@@ -22,4 +22,9 @@ curl -X POST https://{your-api-endpoint} -H "Content-Type: application/json" -d 
 ```
 
 ## Authors
-- **Primary Contact:** Jeong Kim ([@dalmad2](https://github.com/dalmad2)) or [jeong@wrench.ai](mailto:jeong@wrench.ai)
+- **Primary Contact:**
+  - Jeong Kim
+    - [@sot232](https://github.com/sot232)
+    - [@dalmad2](https://github.com/dalmad2)
+    - [jeong@wrench.ai](mailto:jeong@wrench.ai)
+    - [linkedin](https://www.linkedin.com/in/jeongkimbyu/)
