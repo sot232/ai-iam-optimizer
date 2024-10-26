@@ -16,7 +16,7 @@ If you like this project, please buy me a coffee :)
 - `code` (required): The code to optimize the IAM policy for. Can be a string or a dictionary with file names and file contents.
 - `service_category` (optional): The service category to optimize the IAM policy for. Can be either `lambda` or `fargate`. Defaults to `lambda`.
 - `readme` (optional): The README file to optimize the IAM policy for.
-
+- `additional_instructions` (optional): Additional instructions to optimize the IAM policy for.
 ## API
 URL: https://...
 

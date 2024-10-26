@@ -13,10 +13,13 @@ def set_llm(openai_api_key: str = OPENAI_API_KEY, model: str = DEFAUL_MODEL):
 
 
 @traceable
-def run_langchain_client(llm: ChatOpenAI, iam_policy: str, code: str, service_category: str = 'lambda', readme: str = None) -> dict:
-    template = """
-    INSTRUCTION: {INSTRUCTION}
+def run_langchain_client(llm: ChatOpenAI, iam_policy: str, code: str, service_category: str = 'lambda', readme: str = None, additional_instructions: str = None) -> dict:
+    template = "INSTRUCTION: {INSTRUCTION}"
 
+    if additional_instructions:
+        template += "\nADDITIONAL INSTRUCTIONS:\n{additional_instructions}"
+
+    template += """
     SERVICE CATEGORY: {service_category}
 
     IAM POLICY:
@@ -25,6 +28,7 @@ def run_langchain_client(llm: ChatOpenAI, iam_policy: str, code: str, service_ca
     CODE:
     {code}
     """
+
     if readme:
         template += "\nREADME:\n{readme}"
 
@@ -35,6 +39,9 @@ def run_langchain_client(llm: ChatOpenAI, iam_policy: str, code: str, service_ca
     input_data = {"INSTRUCTION": INSTRUCTION, "service_category": service_category, "iam_policy": iam_policy, "code": code}
     if readme:
         input_data["readme"] = readme
+
+    if additional_instructions:
+        input_data["additional_instructions"] = additional_instructions
 
     return chain.invoke(input_data)
 

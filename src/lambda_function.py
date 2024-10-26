@@ -27,7 +27,9 @@ def lambda_handler(event, context):
         llm=llm,
         iam_policy=event.get('iam_policy'),
         code=code[1],
-        service_category=event.get('service_category', None)
+        service_category=event.get('service_category', None),
+        additional_instructions=event.get('additional_instructions', None),
+        readme=event.get('readme', None)
     )
     
     return build_return_json(200, result)
