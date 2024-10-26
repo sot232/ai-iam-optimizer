@@ -1,6 +1,8 @@
 ai-iam-optimizer
 =================
 
+*This project is currently in research phase. It is not ready for production use yet.*
+
 *This is created for a research project to optimize the IAM policy for a given lambda function or fargate task.*
 
 This is currently deployed in AWS as a lambda function, and available as a REST API.
