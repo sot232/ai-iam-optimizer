@@ -11,7 +11,7 @@ def format_code(code) -> tuple[bool, str]:
     elif isinstance(code, dict):
         output = ""
         for key, value in code.items():
-            output += f"Code File Name: {key}\nCode File Content: {value}\n\n"
+            output += f"Code File Name: {key}\nCode File Content: ```{value}```\n\n"
         return True, output
     else:
         raise False, build_return_json(400, "Invalid code type")

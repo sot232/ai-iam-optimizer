@@ -13,7 +13,7 @@ def set_llm(openai_api_key: str = OPENAI_API_KEY, model: str = DEFAUL_MODEL):
 
 
 @traceable
-def run_langchain_client(llm: ChatOpenAI, iam_policy: str, code: str, service_category: str = 'lambda') -> dict:
+def run_langchain_client(llm: ChatOpenAI, iam_policy: str, code: str, service_category: str = 'lambda', readme: str = None) -> dict:
     template = """
     INSTRUCTION: {INSTRUCTION}
 
@@ -25,12 +25,18 @@ def run_langchain_client(llm: ChatOpenAI, iam_policy: str, code: str, service_ca
     CODE:
     {code}
     """
+    if readme:
+        template += "\nREADME:\n{readme}"
 
     custom_prompt = PromptTemplate.from_template(template)
 
     chain = custom_prompt | llm | SimpleJsonOutputParser()
 
-    return chain.invoke({"INSTRUCTION": INSTRUCTION, "service_category": service_category, "iam_policy": iam_policy, "code": code})
+    input_data = {"INSTRUCTION": INSTRUCTION, "service_category": service_category, "iam_policy": iam_policy, "code": code}
+    if readme:
+        input_data["readme"] = readme
+
+    return chain.invoke(input_data)
 
 
 

@@ -1,17 +1,17 @@
 {
     "Statement":[
-       {
-          "Action":[
-             "logs:CreateLogGroup",
-             "logs:CreateLogStream",
-             "logs:PutLogEvents",
-             "secretsmanager:GetSecretValue",
-             "lambda:InvokeFunction",
-             "apigateway:POST"
-          ],
-          "Effect":"Allow",
-          "Resource":"*"
-       }
+        {
+            "Action":[
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "secretsmanager:GetSecretValue",
+                "lambda:InvokeFunction",
+                "apigateway:POST"
+            ],
+            "Effect":"Allow",
+            "Resource":"*"
+        }
     ],
     "Version":"2012-10-17"
   }
