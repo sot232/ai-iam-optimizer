@@ -5,7 +5,7 @@ ai-iam-optimizer
 
 *This is created for a research project to optimize the IAM policy for a given lambda function or fargate task.*
 
-This is currently deployed in AWS as a lambda function, and available as a REST API.
+<del>This is currently deployed in AWS as a lambda function, and available as a REST API.</del>
 
 Please do not abuse this API endpoint.
 
