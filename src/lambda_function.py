@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-from Components.run_agents import run_langchain_client, set_llm
+from Components.run_agents import run_langchain_client, set_llm, run_validation_agent
 from Components.helper import format_code, sanitize_input, build_return_json
 
 # Logging configuration
@@ -37,8 +37,18 @@ def lambda_handler(event, context):
         additional_instructions=event.get('additional_instructions', None),
         readme=event.get('readme', None)
     )
+
+    # run validation agent
+    validation_result = run_validation_agent(
+        llm=llm,
+        iam_policy=event.get('iam_policy'),
+        code=code[1],
+        service_category=event.get('service_category', None),
+        additional_instructions=event.get('additional_instructions', None),
+        readme=event.get('readme', None)
+    )
     
-    return build_return_json(200, result)
+    return build_return_json(200, result, validation_result=validation_result)
 
 
 if __name__ == "__main__":

@@ -112,7 +112,12 @@ def run_validation_agent(
     description_prompt = PromptTemplate.from_template(description_template)
     description_chain = description_prompt | llm | SimpleJsonOutputParser()
 
-    description_chain_input_data = {"INSTRUCTION": DESCRIPTION_EXTRACTOR_INSTRUCTION, "service_category": service_category, "code": code, "iam_policy": iam_policy}
+    description_chain_input_data = {
+        "INSTRUCTION": DESCRIPTION_EXTRACTOR_INSTRUCTION,
+        "service_category": service_category,
+        "code": code,
+        "iam_policy": iam_policy
+    }
     if readme:
         description_chain_input_data["readme"] = readme
 
@@ -130,7 +135,13 @@ def run_validation_agent(
     iam_policy_validator_prompt = PromptTemplate.from_template(iam_policy_validator_template)
     iam_policy_validator_chain = iam_policy_validator_prompt | llm | SimpleJsonOutputParser()
 
-    iam_policy_validator_input_data = {"INSTRUCTION": IAM_POLICY_VALIDATOR_INSTRUCTION, "service_category": service_category, "iam_policy": iam_policy, "description": description_result}
+    iam_policy_validator_input_data = {
+        "INSTRUCTION": IAM_POLICY_VALIDATOR_INSTRUCTION,
+        "service_category": service_category,
+        "iam_policy": iam_policy,
+        "description": description_result,
+        "code": code  # Ensure 'code' is passed here
+    }
     if readme:
         iam_policy_validator_input_data["readme"] = readme
 
@@ -148,7 +159,12 @@ def run_validation_agent(
     code_validator_prompt = PromptTemplate.from_template(code_validator_template)
     code_validator_chain = code_validator_prompt | llm | SimpleJsonOutputParser()
 
-    code_validator_input_data = {"INSTRUCTION": CODE_VALIDATOR_INSTRUCTION, "service_category": service_category, "code": code, "description": description_result}
+    code_validator_input_data = {
+        "INSTRUCTION": CODE_VALIDATOR_INSTRUCTION,
+        "service_category": service_category,
+        "code": code,  # Ensure 'code' is passed here
+        "description": description_result
+    }
     if readme:
         code_validator_input_data["readme"] = readme
 

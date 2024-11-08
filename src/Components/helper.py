@@ -18,7 +18,7 @@ def format_code(code) -> tuple[bool, str]:
     
 
 def build_return_json(
-    code, message
+    code, message, validation_result=None
     ) -> dict:
     '''
     Build the return json for the lambda function
@@ -26,6 +26,8 @@ def build_return_json(
     response_body = {
         'message': message
     }
+    if validation_result:
+        response_body['validation_result'] = validation_result
     
     #  need the headers for the security reason
     return {
