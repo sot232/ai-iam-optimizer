@@ -12,9 +12,9 @@ def format_code(code) -> tuple[bool, str]:
         output = ""
         for key, value in code.items():
             output += f"Code File Name: {key}\nCode File Content: ```{value}```\n\n"
-        return True, output
+        return (True, output)
     else:
-        return False, build_return_json(400, "Invalid code type")
+        raise (False, build_return_json(400, "Invalid code type"))
     
 
 def build_return_json(

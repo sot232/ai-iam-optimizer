@@ -1,5 +1,11 @@
 import logging
-import os
+import json
+import argparse
+
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 from Components.run_agents import run_langchain_client, set_llm
 from Components.helper import format_code, sanitize_input, build_return_json
@@ -33,3 +39,17 @@ def lambda_handler(event, context):
     )
     
     return build_return_json(200, result)
+
+
+if __name__ == "__main__":
+    # for command line use
+    parser = argparse.ArgumentParser(description="Run lambda_handler with a JSON event.")
+    parser.add_argument('--event', type=str, required=True, help="Event data as JSON string")
+
+    args = parser.parse_args()
+
+    # Load event JSON from the command line argument
+    event = json.loads(args.event)
+
+    # Run the lambda_handler with the provided event
+    print(lambda_handler(event, None))

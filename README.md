@@ -31,6 +31,9 @@ curl -X POST https://{your-api-endpoint} -H "Content-Type: application/json" -d 
 curl -X POST https://{your-api-endpoint} -H "Content-Type: application/json" -d '{"iam_policy": "...", "code": {"file1.py": "...", "file2.py": "..."}, "service_category": "fargate"}'
 ```
 
+## For those who want to run this locally
+You will need to set environment variables for `OPENAI_API_KEY`, `LANGCHAIN_API_KEY`, `LANGCHAIN_PROJECT`, and `LANGCHAIN_ENDPOINT`.
+
 ## License
 This project is licensed under the MIT License.
 
